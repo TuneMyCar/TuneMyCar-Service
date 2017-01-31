@@ -1,12 +1,15 @@
 package com.hsylabs.tunemycar;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -24,11 +27,12 @@ public class Index extends AppCompatActivity {
     private GridViewAdapter gridViewAdapter;
     private List<Product> productList;
     private int currentViewMode = 0;
-//    private DatabaseHelper mDBHelper;
+    private DBHelper indexDBHelper;
     ImageButton team;
     Spinner spin;
     private boolean dbExists = true;
     String car_name;
+    Toolbar toolbar;
 
     // THIS IS MY COMMENT FROM HSY.
     // ANOTHER
@@ -46,15 +50,19 @@ public class Index extends AppCompatActivity {
 //        spin=(Spinner)findViewById(R.id.spinner);
         stubList = (ViewStub) findViewById(R.id.stub_list);
         stubGrid = (ViewStub) findViewById(R.id.stub_grid);
-
-//        mDBHelper = new DatabaseHelper(this);
+        toolbar=(Toolbar)findViewById(R.id.toolbar2);
+        //OBJ seeting menu on toolbar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        indexDBHelper = new DBHelper(this);
 
         //      Check exists database
-//            File database = MainActivity.this.getDatabasePath(DatabaseHelper.DBNAME);
+//            File database = Index.this.getDatabasePath(DBHelper.DB_NAME);
 //            if (database.exists()) {
-//                mDBHelper.getReadableDatabase();
+//                indexDBHelper.getReadableDatabase();
 //                //Copy db
-//                if (copyDatabase(this)) {
+//                if (!indexDBHelper.copyDatabase()) {
 //                    Toast.makeText(this, "Copy database success1", Toast.LENGTH_SHORT).show();
 //                } else {
 //                    Toast.makeText(this, "Copy data error", Toast.LENGTH_SHORT).show();
@@ -147,15 +155,19 @@ public class Index extends AppCompatActivity {
         return productList;
     }
 
-//    AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
-//        @Override
-//        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//            String value = productList.get(position).getTitle();
-            //Do any thing when user click to item
-//            if (value.equals("Vehicle")) {
-//                Intent i = new Intent(MainActivity.this, AddVehicle.class);
-//                i.putExtra("name", value);
-//                startActivityForResult(i, 123);
+
+    AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
+       @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+           String value = productList.get(position).getTitle();
+           //Do any thing when user click to item
+           if (value.equals("Vehicle")) {
+               Intent i = new Intent(Index.this, add_vehicle.class);
+               i.putExtra("name", value);
+                startActivityForResult(i, 123);
+           }
+
+//
 //            } else if (value.equals("Fill-Up Rec.")) {
 //                Intent i = new Intent(MainActivity.this, FillupRecord.class);
 //                i.putExtra("name", value);
@@ -210,34 +222,41 @@ public class Index extends AppCompatActivity {
 //                startActivityForResult(i, 123);
 //            }
 //
-//        }
-//    };
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_menu_1:
-                if(VIEW_MODE_LISTVIEW == currentViewMode) {
-                    currentViewMode = VIEW_MODE_GRIDVIEW;
-                } else {
-                    currentViewMode = VIEW_MODE_LISTVIEW;
-                }
-                //Switch view
-                switchView();
-                //Save view mode in share reference
-                SharedPreferences sharedPreferences = getSharedPreferences("ViewMode", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("currentViewMode", currentViewMode);
-                editor.commit();
-
-                break;
         }
-        return true;
-    }
+   };
+
+           @Override
+           public boolean onCreateOptionsMenu (Menu menu){
+               getMenuInflater().inflate(R.menu.main, menu);
+               return super.onCreateOptionsMenu(menu);
+           }
+           @Override
+           public boolean onPrepareOptionsMenu ( final Menu menu)
+           {
+               getMenuInflater().inflate(R.menu.main, menu);
+               return super.onCreateOptionsMenu(menu);
+           }
+
+           @Override
+           public boolean onOptionsItemSelected (MenuItem item){
+               switch (item.getItemId()) {
+                   case R.id.item_menu_1:
+                       if (VIEW_MODE_LISTVIEW == currentViewMode) {
+                           currentViewMode = VIEW_MODE_GRIDVIEW;
+                       } else {
+                           currentViewMode = VIEW_MODE_LISTVIEW;
+                       }
+                       //Switch view
+                       switchView();
+                       //Save view mode in share reference
+                       SharedPreferences sharedPreferences = getSharedPreferences("ViewMode", MODE_PRIVATE);
+                       SharedPreferences.Editor editor = sharedPreferences.edit();
+                       editor.putInt("currentViewMode", currentViewMode);
+                       editor.commit();
+
+                       break;
+               }
+               return true;
+           }
+
 }

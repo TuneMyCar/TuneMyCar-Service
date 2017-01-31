@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,6 +18,8 @@
         android:dividerHeight="2dp"
         android:divider="#ccc"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
         android:layout_marginRight="10dp"/>
+    </LinearLayout>
 
 </FrameLayout>

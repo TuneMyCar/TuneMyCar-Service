@@ -30,6 +30,8 @@ public class Index extends AppCompatActivity {
     private boolean dbExists = true;
     String car_name;
 
+    // THIS IS MY COMMENT FROM HSY.
+
     static final int VIEW_MODE_LISTVIEW = 0;
     static final int VIEW_MODE_GRIDVIEW = 1;
 

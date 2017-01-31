@@ -31,6 +31,7 @@ public class Index extends AppCompatActivity {
     String car_name;
 
     // THIS IS MY COMMENT FROM HSY.
+    // ANOTHER
 
     static final int VIEW_MODE_LISTVIEW = 0;
     static final int VIEW_MODE_GRIDVIEW = 1;

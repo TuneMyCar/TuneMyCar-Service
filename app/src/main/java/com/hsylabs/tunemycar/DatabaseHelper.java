@@ -16,7 +16,7 @@ import java.io.OutputStream;
  * Created by Omer Bashir Jamal on 2/1/2017.
  */
 
-public class DBHelper extends SQLiteOpenHelper
+public class DatabaseHelper extends SQLiteOpenHelper
 {
     //Androids default system path to find the databse
     private static String DB_PATH = "/data/data/com.hsylabs.tunemycar/databases/";
@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper
     private SQLiteDatabase myDataBase;
     private final Context mycontext;
     //Constructor to take and keep the records f Android Application
-    public DBHelper(Context context)
+    public DatabaseHelper(Context context)
     {
         super(context, DB_NAME, null, 1);
         this.mycontext = context;
@@ -129,6 +129,6 @@ public class DBHelper extends SQLiteOpenHelper
         contentValues.put("Selling_Odometer",so);
         contentValues.put("Selling_Date",sd);
         contentValues.put("Notes", n);
-        this.getWritableDatabase().insertOrThrow("add_vehicle", "", contentValues);
+        this.getWritableDatabase().insertOrThrow("addVehicle", "", contentValues);
     }
 }

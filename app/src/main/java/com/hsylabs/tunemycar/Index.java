@@ -27,7 +27,7 @@ public class Index extends AppCompatActivity {
     private GridViewAdapter gridViewAdapter;
     private List<Product> productList;
     private int currentViewMode = 0;
-    private DBHelper indexDBHelper;
+    private DatabaseHelper indexDatabaseHelper;
     ImageButton team;
     Spinner spin;
     private boolean dbExists = true;
@@ -58,14 +58,14 @@ public class Index extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        indexDBHelper = new DBHelper(this);
+        indexDatabaseHelper = new DatabaseHelper(this);
 
         //      Check exists database
-//            File database = Index.this.getDatabasePath(DBHelper.DB_NAME);
+//            File database = Index.this.getDatabasePath(DatabaseHelper.DB_NAME);
 //            if (database.exists()) {
-//                indexDBHelper.getReadableDatabase();
+//                indexDatabaseHelper.getReadableDatabase();
 //                //Copy db
-//                if (!indexDBHelper.copyDatabase()) {
+//                if (!indexDatabaseHelper.copyDatabase()) {
 //                    Toast.makeText(this, "Copy database success1", Toast.LENGTH_SHORT).show();
 //                } else {
 //                    Toast.makeText(this, "Copy data error", Toast.LENGTH_SHORT).show();
@@ -165,7 +165,7 @@ public class Index extends AppCompatActivity {
            String value = productList.get(position).getTitle();
            //Do any thing when user click to item
            if (value.equals("Vehicle")) {
-               Intent i = new Intent(Index.this, add_vehicle.class);
+               Intent i = new Intent(Index.this, addVehicle.class);
                i.putExtra("name", value);
                 startActivityForResult(i, 123);
            }

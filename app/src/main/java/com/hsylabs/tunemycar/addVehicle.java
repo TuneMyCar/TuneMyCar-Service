@@ -11,12 +11,12 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class add_vehicle extends AppCompatActivity {
+public class addVehicle extends AppCompatActivity {
 
     ImageButton save, cancel;
     EditText vname, vmodel, vlicenseplate, vvin, vinspolicy, vpprice, vpodometer, vsodometer, vnotes, vtankcapacity,vpdate,vsdate,vsprice;
     String make, years;
-    private DBHelper addDBHelper;
+    private DatabaseHelper addDatabaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +39,7 @@ public class add_vehicle extends AppCompatActivity {
         vpdate=(EditText)findViewById(R.id.vehicle_date);
         vsprice=(EditText)findViewById(R.id.vehicle_sell_price);
         vsdate=(EditText)findViewById(R.id.vehicle_sell_date);
-        addDBHelper=new DBHelper(this);
+        addDatabaseHelper =new DatabaseHelper(this);
          //making spinner for dates and car brands
         String[] dates = new String[]{"1995", "1996", "1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017"};
         String[] brand_make = new String[]{"Honda", "Toyota", "Suzuki","Dodge","Audi","Benz","BMW","Bugati","Ford","Hyundai","Lexus","Kia","Jeep","Porshe","Volvo","Nissan","Mitsubishi"};
@@ -53,7 +53,7 @@ public class add_vehicle extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(add_vehicle.this, Index.class);
+                Intent intent = new Intent(addVehicle.this, Index.class);
                 startActivity(intent);
             }
         });
@@ -66,7 +66,7 @@ public class add_vehicle extends AppCompatActivity {
     {
         try
         {
-            addDBHelper.insert_vehicle(vname.getText().toString(), make, vmodel.getText().toString(),
+            addDatabaseHelper.insert_vehicle(vname.getText().toString(), make, vmodel.getText().toString(),
                     years,vlicenseplate.getText().toString(),vvin.getText().toString(),
                     vinspolicy.getText().toString(),vtankcapacity.getText().toString(),
                     vpprice.getText().toString(),vpodometer.getText().toString(),vpdate.getText().toString(),
@@ -77,9 +77,9 @@ public class add_vehicle extends AppCompatActivity {
 
         } catch (SQLiteException e)
         {
-            Toast.makeText(add_vehicle.this, "Error while inserting...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(addVehicle.this, "Error while inserting...", Toast.LENGTH_SHORT).show();
         }
-        Intent intent = new Intent(add_vehicle.this, Index.class);
+        Intent intent = new Intent(addVehicle.this, Index.class);
         startActivity(intent);
     }
 }

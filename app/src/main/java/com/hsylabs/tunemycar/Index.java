@@ -40,6 +40,8 @@ public class Index extends AppCompatActivity {
     // MY COMMENT OMERRRRRRRRRRRRRR
     // NICE OMER
 
+    // THIS IS NABEEL NOW.
+
     static final int VIEW_MODE_LISTVIEW = 0;
     static final int VIEW_MODE_GRIDVIEW = 1;
 

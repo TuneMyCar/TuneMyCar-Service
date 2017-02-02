@@ -195,20 +195,21 @@ public class Index extends AppCompatActivity {
                 Intent i = new Intent(Index.this, FAQ.class);
                 startActivity(i);
             }
+            else if (value.equals("Trip Rec.")) {
+                Intent i = new Intent(Index.this, TripRecord.class);
+                i.putExtra("name", value);
+                startActivityForResult(i, 123);
+            } else if (value.equals("Vehicle Parts")) {
+                Intent i = new Intent(Index.this, VehicleParts.class);
+                i.putExtra("name", value);
+                startActivityForResult(i, 123);
+            } else if (value.equals("Predictions")) {
+                Intent i = new Intent(Index.this, Predictions.class);
+                i.putExtra("name", value);
+                startActivityForResult(i, 123);
+            }
 
-//            else if (value.equals("Trip Rec.")) {
-//                Intent i = new Intent(MainActivity.this, triprecord.class);
-//                i.putExtra("name", value);
-//                startActivityForResult(i, 123);
-//            } else if (value.equals("Vehicle Parts")) {
-//                Intent i = new Intent(MainActivity.this, vehicleParts.class);
-//                i.putExtra("name", value);
-//                startActivityForResult(i, 123);
-//            } else if (value.equals("Predictions")) {
-//                Intent i = new Intent(MainActivity.this, predictions.class);
-//                i.putExtra("name", value);
-//                startActivityForResult(i, 123);
-//            } else if (value.equals("Vehicle Info.")) {
+//            else if (value.equals("Vehicle Info.")) {
 //                Intent i = new Intent(MainActivity.this, vehicleDetails.class);
 //                i.putExtra("name", value);
 //                i.putExtra("car_name", car_name);

@@ -66,25 +66,32 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return checkDB !=null ? true:false;
     }
     //Copying Database from asset folder to your app;
-    public void copyDatabase()throws IOException
+    public boolean copyDatabase()throws IOException
     {
-        //opening local db as input stream
-        InputStream myInput=mycontext.getAssets().open(DB_NAME);
-        //path to the just created empty database
-        String outFileNme=DB_PATH+DB_NAME;
-        //Open the empty db as output stream
-        OutputStream myOutput=new FileOutputStream(outFileNme);
-        //transfer bytes from the input file to the output file
-        byte[] buffer = new byte[1024];
-        int length;
-        while ((length = myInput.read(buffer))>0){
-            myOutput.write(buffer, 0, length);
+        try {
+            //opening local db as input stream
+            InputStream myInput=mycontext.getAssets().open(DB_NAME);
+            //path to the just created empty database
+            String outFileNme=DB_PATH+DB_NAME;
+            //Open the empty db as output stream
+            OutputStream myOutput=new FileOutputStream(outFileNme);
+            //transfer bytes from the input file to the output file
+            byte[] buffer = new byte[1024];
+            int length = 0;
+            while ((length = myInput.read(buffer))>0){
+                myOutput.write(buffer, 0, length);
+            }
+
+            //Closing the streams
+            myOutput.flush();
+            myOutput.close();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
 
-        //Closing the streams
-        myOutput.flush();
-        myOutput.close();
-        myInput.close();
     }
     public void openDatabase()throws SQLException
     {

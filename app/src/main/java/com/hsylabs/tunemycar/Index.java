@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +13,10 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,21 +29,10 @@ public class Index extends AppCompatActivity {
     private GridViewAdapter gridViewAdapter;
     private List<Product> productList;
     private int currentViewMode = 0;
-    private DatabaseHelper indexDatabaseHelper;
+    private DatabaseHelper mDBHelper;
     ImageButton team;
     Spinner spin;
-    private boolean dbExists = true;
     String car_name;
-    Toolbar toolbar;
-
-    // THIS IS MY COMMENT FROM HSY.
-    // ANOTHER
-
-    // MY COMMENT OMERRRRRRRRRRRRRR
-    // NICE OMER
-
-    // THIS IS NABEEL NOW.
-    //now this is nabeel
 
     static final int VIEW_MODE_LISTVIEW = 0;
     static final int VIEW_MODE_GRIDVIEW = 1;
@@ -53,25 +44,25 @@ public class Index extends AppCompatActivity {
 //        spin=(Spinner)findViewById(R.id.spinner);
         stubList = (ViewStub) findViewById(R.id.stub_list);
         stubGrid = (ViewStub) findViewById(R.id.stub_grid);
-        toolbar=(Toolbar)findViewById(R.id.toolbar2);
-        //OBJ seeting menu on toolbar
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        indexDatabaseHelper = new DatabaseHelper(this);
+
+        mDBHelper = new DatabaseHelper(this);
 
         //      Check exists database
-//            File database = Index.this.getDatabasePath(DatabaseHelper.DB_NAME);
-//            if (database.exists()) {
-//                indexDatabaseHelper.getReadableDatabase();
-//                //Copy db
-//                if (!indexDatabaseHelper.copyDatabase()) {
-//                    Toast.makeText(this, "Copy database success1", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(this, "Copy data error", Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
+            File database = Index.this.getDatabasePath(DatabaseHelper.DB_NAME);
+            if (database.exists()) {
+                mDBHelper.getReadableDatabase();
+                //Copy db
+                try {
+                    if (!mDBHelper.copyDatabase()) {
+                        Toast.makeText(this, "Copy database success1", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Copy data error", Toast.LENGTH_SHORT).show();
+
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         //Inflate ViewStub before get view
 
         stubList.inflate();
@@ -87,8 +78,8 @@ public class Index extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("ViewMode", MODE_PRIVATE);
         currentViewMode = sharedPreferences.getInt("currentViewMode", VIEW_MODE_LISTVIEW);//Default is view listview
         //Register item lick
-//        listView.setOnItemClickListener(onItemClick);
-//        gridView.setOnItemClickListener(onItemClick);
+        listView.setOnItemClickListener(onItemClick);
+        gridView.setOnItemClickListener(onItemClick);
 
         switchView();
 
@@ -158,20 +149,17 @@ public class Index extends AppCompatActivity {
         return productList;
     }
 
-
     AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
-       @Override
+        @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-           String value = productList.get(position).getTitle();
-           //Do any thing when user click to item
-           if (value.equals("Vehicle")) {
-               Intent i = new Intent(Index.this, addVehicle.class);
-               i.putExtra("name", value);
+            String value = productList.get(position).getTitle();
+            //    Do any thing when user click to item
+            if (value.equals("Vehicle")) {
+                Intent i = new Intent(Index.this, addVehicle.class);
+                i.putExtra("name", value);
                 startActivityForResult(i, 123);
-           }
-
-//
-//            } else if (value.equals("Fill-Up Rec.")) {
+            }
+//             else if (value.equals("Fill-Up Rec.")) {
 //                Intent i = new Intent(MainActivity.this, FillupRecord.class);
 //                i.putExtra("name", value);
 //                startActivityForResult(i, 123);
@@ -224,42 +212,35 @@ public class Index extends AppCompatActivity {
 //                i.putExtra("car_name", car_name);
 //                startActivityForResult(i, 123);
 //            }
-//
+
         }
-   };
+    };
 
-           @Override
-           public boolean onCreateOptionsMenu (Menu menu){
-               getMenuInflater().inflate(R.menu.main, menu);
-               return super.onCreateOptionsMenu(menu);
-           }
-           @Override
-           public boolean onPrepareOptionsMenu ( final Menu menu)
-           {
-               getMenuInflater().inflate(R.menu.main, menu);
-               return super.onCreateOptionsMenu(menu);
-           }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-           @Override
-           public boolean onOptionsItemSelected (MenuItem item){
-               switch (item.getItemId()) {
-                   case R.id.item_menu_1:
-                       if (VIEW_MODE_LISTVIEW == currentViewMode) {
-                           currentViewMode = VIEW_MODE_GRIDVIEW;
-                       } else {
-                           currentViewMode = VIEW_MODE_LISTVIEW;
-                       }
-                       //Switch view
-                       switchView();
-                       //Save view mode in share reference
-                       SharedPreferences sharedPreferences = getSharedPreferences("ViewMode", MODE_PRIVATE);
-                       SharedPreferences.Editor editor = sharedPreferences.edit();
-                       editor.putInt("currentViewMode", currentViewMode);
-                       editor.commit();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_menu_1:
+                if(VIEW_MODE_LISTVIEW == currentViewMode) {
+                    currentViewMode = VIEW_MODE_GRIDVIEW;
+                } else {
+                    currentViewMode = VIEW_MODE_LISTVIEW;
+                }
+                //Switch view
+                switchView();
+                //Save view mode in share reference
+                SharedPreferences sharedPreferences = getSharedPreferences("ViewMode", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("currentViewMode", currentViewMode);
+                editor.commit();
 
-                       break;
-               }
-               return true;
-           }
-
+                break;
+        }
+        return true;
+    }
 }

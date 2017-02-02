@@ -270,38 +270,4 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cursor.close();
         return array;
     }
-    public String[] getVehicleDetail2(String a)
-    {
-        String sd;
-        openDatabase();
-        Cursor cursor = myDataBase.rawQuery("SELECT * From add_vehicle WHERE Vehicle_Name='"+a+"'", null);
-        cursor.moveToFirst();
-        String[] array = new String[3];
-        for (int index = 11; index < array.length; index++)
-        {
-            sd = cursor.getString(index).toString();
-            array[index] = sd;
-        }
-        cursor.moveToNext();
-        cursor.close();
-        return array;
-    }
-    public ArrayList<String>getvehiclename_VD(String mm)
-    {
-        openDatabase();
-        ArrayList<String>list=new ArrayList<String>();
-        myDataBase=this.getReadableDatabase();
-        Cursor cursor = myDataBase.rawQuery("SELECT * From add_vehicle WHERE Vehicle_Name='"+mm+"'", null);
-        cursor.moveToFirst();
-
-        while (!cursor.isAfterLast()) {
-            String name=cursor.getString(cursor.getColumnIndex("Vehicle_Name"));
-            list.add(name);
-            cursor.moveToNext();
-        }
-        cursor.close();
-        myDataBase.close();
-        return list;
-
-    }
 }

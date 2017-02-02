@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,6 +54,9 @@ public class Index extends AppCompatActivity {
         spin = (Spinner) findViewById(R.id.spinner);
         stubList = (ViewStub) findViewById(R.id.stub_list);
         stubGrid = (ViewStub) findViewById(R.id.stub_grid);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle(R.string.app_name);
 
         Log.d("OMERE", "FDSF");
         mDBHelper = new DatabaseHelper(this);
@@ -97,7 +101,7 @@ public class Index extends AppCompatActivity {
 
         mDBHelper.openDatabase();
         ArrayList<String> lis = mDBHelper.getvehiclename();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, lis);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, lis);
         spin.setAdapter(adapter);
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -156,6 +160,9 @@ public class Index extends AppCompatActivity {
         productList.add(new Product(R.drawable.details, "Vehicle Info.", "This is description 10"));
         productList.add(new Product(R.drawable.about, "About", "This is description 10"));
         productList.add(new Product(R.drawable.parts, "Vehicle Parts", "This is description 10"));
+        productList.add(new Product(R.drawable.parts, "Predictions", "This is description 10"));
+        productList.add(new Product(R.drawable.details, "Browse  Cars", "This is description 10"));
+        productList.add(new Product(R.drawable.about, "What's New?", "This is description 10"));
 
         return productList;
     }

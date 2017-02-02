@@ -9,11 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.hsylabs.tunemycar.model.Browse;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Omer Bashir Jamal on 2/1/2017.
@@ -202,6 +205,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         contentValues.put("Filling_Center_Name",notes);
         contentValues.put("Notes",odometer);
         contentValues.put("License_Plate",a);
+
         this.getWritableDatabase().insertOrThrow("fillup_record", "", contentValues);
     }
     public void service_record(String a,String b,String c,String d,String e,String f,String g,String h,String i)
@@ -269,5 +273,38 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cursor.moveToNext();
         cursor.close();
         return array;
+    }
+    public List<Browse> getBrowse(String a) {
+        Browse browse = null;
+        List<Browse> tablesList = new ArrayList<>();
+        openDatabase();
+        Log.d("DSADSA", a);
+        Cursor cursor = myDataBase.rawQuery("SELECT * FROM fillup_record WHERE Vehicle_Name='"+a+"'", null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            browse = new Browse(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            tablesList.add(browse);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        myDataBase.close();
+        return tablesList;
+    }
+
+    public Double getCost(String a) {
+        openDatabase();
+        Cursor cursor = myDataBase.rawQuery("SELECT sum(Total_Cost) FROM fillup_record WHERE Vehicle_Name='"+a+"'", null);
+        cursor.moveToFirst();
+        Double price = null;
+
+        Log.d("DSADSA", a);
+        while (!cursor.isAfterLast()) {
+            price = Double.parseDouble(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        myDataBase.close();
+        return price;
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:id="@+id/s2"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:id="@+id/s1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="String1"
+        android:layout_marginTop="-20dp"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:textColor="#e61a5f"
+        android:textSize="20dp" />
+
+    <TextView
+        android:text="Price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/s3" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/s4" />
+
+</LinearLayout>

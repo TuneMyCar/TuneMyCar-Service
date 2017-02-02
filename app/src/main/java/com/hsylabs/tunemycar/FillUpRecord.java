@@ -27,6 +27,7 @@ public class FillUpRecord extends AppCompatActivity {
     Spinner spi;
     public static final String DBNAME = "myCarDB.sqlite";
     String license_plate,mm,y;
+    String newString;
 
     double mul = 0;
     double mul2 = 0;
@@ -59,10 +60,21 @@ public class FillUpRecord extends AppCompatActivity {
         fvehicle.setAdapter(adapter1);
         y = fvehicle.toString();
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString= null;
+            } else {
+                newString= extras.getString("car_name");
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("car_name");
+        }
+
         ArrayList<String> lis=nDBHelper.getvehiclename();
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,lis);
         spi.setAdapter(adapter);
-        mm=spi.toString();
+        mm=spi.getSelectedItem().toString();
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,8 +86,6 @@ public class FillUpRecord extends AppCompatActivity {
         license_plate= nDBHelper.getPlate(mm);
 
         // TOTAL COST FUNCTION
-
-
         fvolume.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

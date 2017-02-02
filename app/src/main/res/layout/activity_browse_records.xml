@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_browse_records"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hsylabs.tunemycar.BrowseRecords">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Price"
+            android:textColor="#FFF"
+            android:layout_alignParentStart="true"
+            android:id="@+id/price"
+            android:textSize="20sp" />
+
+        <TextView
+            android:text="New Car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/browse_car"
+            android:textSize="28sp"
+            android:textColor="?android:attr/detailsElementBackground"
+            android:layout_alignBottom="@+id/toolbar3"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/listview_browse"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:divider="#d1d1d1"
+        android:dividerHeight="1dp">
+
+    </ListView>
+</LinearLayout>

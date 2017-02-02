@@ -46,12 +46,6 @@ public class Index extends AppCompatActivity {
 
     static final int VIEW_MODE_LISTVIEW = 0;
     static final int VIEW_MODE_GRIDVIEW = 1;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,10 +113,6 @@ public class Index extends AppCompatActivity {
 
             }
         });
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private void switchView() {
@@ -209,12 +199,13 @@ public class Index extends AppCompatActivity {
                 startActivityForResult(i, 123);
             }
 
-//            else if (value.equals("Vehicle Info.")) {
-//                Intent i = new Intent(MainActivity.this, vehicleDetails.class);
-//                i.putExtra("name", value);
-//                i.putExtra("car_name", car_name);
-//                startActivityForResult(i, 123);
-//            } else if (value.equals("Browse Rec.")) {
+            else if (value.equals("Vehicle Info.")) {
+                Intent i = new Intent(Index.this, VehicleDetails.class);
+                i.putExtra("name", value);
+                i.putExtra("car_name", car_name);
+                startActivityForResult(i, 123);
+            }
+//            else if (value.equals("Browse Rec.")) {
 //                Intent i = new Intent(MainActivity.this, BrowseRecords.class);
 //                i.putExtra("name", value);
 //                i.putExtra("car_name", car_name);
@@ -269,39 +260,4 @@ public class Index extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Index Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
 }

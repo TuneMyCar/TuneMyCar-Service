@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,6 +31,20 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         super(context, DB_NAME, null, 1);
         this.mycontext = context;
+
+        if(checkDatabase()) {
+            openDatabase();
+        } else {
+            try {
+                this.getReadableDatabase();
+                copyDatabase();
+                this.close();
+                openDatabase();
+            } catch (IOException e) {
+                throw new Error("Error while copying...");
+            }
+            Toast.makeText(context, "Initial DB connected", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void createDatabase()throws IOException
@@ -238,5 +253,55 @@ public class DatabaseHelper extends SQLiteOpenHelper
         contentValues.put("Notes",notes1);
         contentValues.put("License_Plate",lp);
         this.getWritableDatabase().insertOrThrow("Trip_Record", "", contentValues);
+    }
+    public String[] getVehicleDetail(String a)
+    {
+        String sd;
+        openDatabase();
+        Cursor cursor = myDataBase.rawQuery("SELECT * From add_vehicle WHERE Vehicle_Name='"+a+"'", null);
+        cursor.moveToFirst();
+        String[] array = new String[15];
+        for (int index = 0; index < array.length; index++)
+        {
+            sd = cursor.getString(index).toString();
+            array[index] = sd;
+        }
+        cursor.moveToNext();
+        cursor.close();
+        return array;
+    }
+    public String[] getVehicleDetail2(String a)
+    {
+        String sd;
+        openDatabase();
+        Cursor cursor = myDataBase.rawQuery("SELECT * From add_vehicle WHERE Vehicle_Name='"+a+"'", null);
+        cursor.moveToFirst();
+        String[] array = new String[3];
+        for (int index = 11; index < array.length; index++)
+        {
+            sd = cursor.getString(index).toString();
+            array[index] = sd;
+        }
+        cursor.moveToNext();
+        cursor.close();
+        return array;
+    }
+    public ArrayList<String>getvehiclename_VD(String mm)
+    {
+        openDatabase();
+        ArrayList<String>list=new ArrayList<String>();
+        myDataBase=this.getReadableDatabase();
+        Cursor cursor = myDataBase.rawQuery("SELECT * From add_vehicle WHERE Vehicle_Name='"+mm+"'", null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            String name=cursor.getString(cursor.getColumnIndex("Vehicle_Name"));
+            list.add(name);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        myDataBase.close();
+        return list;
+
     }
 }

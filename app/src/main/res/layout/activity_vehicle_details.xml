@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_vehicle_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hsylabs.tunemycar.VehicleDetails">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar2" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HEY"
+            android:layout_marginLeft="180dp"
+            android:textColor="#FFF"
+            android:id="@+id/header"
+            android:textSize="24sp" />
+
+    </android.support.v7.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Make"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_name"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Model"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_model"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Year"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_year"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="License Plate"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_license_plate"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VIN"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_vin"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="YInsurance Policy"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_ins_policy"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tank Capacity"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_tank_capacity"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Purchase"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="normal|bold"
+                    android:fontFamily="sans-serif"
+                    android:textSize="24sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:inputType="numberDecimal"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_purchase_price"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Odometer"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="13dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_purchase_odometer"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_purchase_date"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selling"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="normal|bold"
+                    android:textSize="24sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_sell_price"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Odometer"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_sell_odometer"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_sell_date"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Notes"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/detail_notes"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -46,10 +47,14 @@ public class addVehicle extends AppCompatActivity {
        //setting widgets
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, brand_make);
         make1.setAdapter(adapter);
+
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, dates);
         year.setAdapter(adapter1);
-        make = make1.toString();
-        years = year.toString();
+
+
+        make = make1.getSelectedItem().toString();
+        years = year.getSelectedItem().toString();
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

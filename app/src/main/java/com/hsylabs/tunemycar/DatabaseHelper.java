@@ -220,4 +220,23 @@ public class DatabaseHelper extends SQLiteOpenHelper
         contentValues.put("License_Plate",i);
         this.getWritableDatabase().insertOrThrow("expense_record", "", contentValues);
     }
+    public void trip_record(String a,String b,String c,String d, String dep, String depodo, String deploc,String arr, String arrodo, String arrloc, String arrtax, String notes1, String lp)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Type",a);
+        contentValues.put("Purpose",b);
+        contentValues.put("Client",c);
+        contentValues.put("Vehicle",d);
+        contentValues.put("Departure_Date_Time", dep);
+        contentValues.put("Departure_Odometer", depodo);
+        contentValues.put("Departure_Location",deploc);
+        contentValues.put("Arrival_Date_Time",arr);
+        contentValues.put("Arrival_Odometer",arrodo);
+        contentValues.put("Arrival_Location",arrloc);
+        contentValues.put("Tax_Deduction_Amount",arrtax);
+        contentValues.put("Notes",notes1);
+        contentValues.put("License_Plate",lp);
+        this.getWritableDatabase().insertOrThrow("Trip_Record", "", contentValues);
+    }
 }

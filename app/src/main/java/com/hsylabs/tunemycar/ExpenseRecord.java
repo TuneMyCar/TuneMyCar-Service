@@ -3,12 +3,14 @@ package com.hsylabs.tunemycar;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.icu.text.SimpleDateFormat;
+import android.icu.util.GregorianCalendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -16,13 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.SimpleTimeZone;
 
 public class ExpenseRecord extends AppCompatActivity {
     private DatabaseHelper nDBHelper;
     ImageButton save, cancel;
-    EditText eodometer,eprice,evolume,epaymenttype,enotes,estation,etotalcost;
-    TextView edatetime;
+    EditText eodometer,eprice,evolume,epaymenttype,enotes,estation,etotalcost,edatetime;
     Spinner spi;
     String license_plate,mm,y;
     @Override
@@ -37,7 +39,7 @@ public class ExpenseRecord extends AppCompatActivity {
         estation=(EditText)findViewById(R.id.expense_center_name);
         enotes=(EditText)findViewById(R.id.expense_notes);
         epaymenttype=(EditText)findViewById(R.id.expense_payment_time);
-        edatetime=(TextView) findViewById(R.id.expense_date_time);
+        edatetime=(EditText) findViewById(R.id.expense_date_time);
         spi=(Spinner)findViewById(R.id.expense_vehicle_name);
         nDBHelper = new DatabaseHelper(this);
 
@@ -49,10 +51,10 @@ public class ExpenseRecord extends AppCompatActivity {
         y =expe.toString();
 
         // getting current date
-        long date = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("MM MM dd, yyyy h:mm a");
-        String dateString = sdf.format(date);
-        edatetime.setText(dateString);
+//        long date = System.currentTimeMillis();
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM MM dd, yyyy h:mm a");
+//        String dateString = sdf.format(date);
+//        edatetime.setText(dateString);
 
         ArrayList<String> lis=nDBHelper.getvehiclename();
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,lis);
@@ -66,6 +68,7 @@ public class ExpenseRecord extends AppCompatActivity {
             }
         });
         license_plate= nDBHelper.getPlate(mm);
+//        Calendar calendar = new GregorianCalendar(edatetime.getYear(), edatetime.getMonth(), edatetime.getDayOfMonth();
     }
     public void adddd(View view)
     {

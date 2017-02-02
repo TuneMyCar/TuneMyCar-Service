@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:id="@+id/spinner"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="40dp"
             android:popupBackground="#555"
             android:layout_below="@+id/stub_list" />
 

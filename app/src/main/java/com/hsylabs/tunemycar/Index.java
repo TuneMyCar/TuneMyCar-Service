@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -41,10 +43,11 @@ public class Index extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
-//        spin=(Spinner)findViewById(R.id.spinner);
+        spin=(Spinner)findViewById(R.id.spinner);
         stubList = (ViewStub) findViewById(R.id.stub_list);
         stubGrid = (ViewStub) findViewById(R.id.stub_grid);
 
+        Log.d("OMERE", "FDSF");
         mDBHelper = new DatabaseHelper(this);
 
         //      Check exists database
@@ -52,16 +55,18 @@ public class Index extends AppCompatActivity {
             if (database.exists()) {
                 mDBHelper.getReadableDatabase();
                 //Copy db
-                try {
-                    if (!mDBHelper.copyDatabase()) {
-                        Toast.makeText(this, "Copy database success1", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Copy data error", Toast.LENGTH_SHORT).show();
-
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    if (mDBHelper.copyDatabase()) {
+//                        Toast.makeText(this, "Copy database success1", Toast.LENGTH_SHORT).show();
+//                    } else {
+//
+//                        Log.d("Omer", "IN D2B");
+//                        Toast.makeText(this, "Copy data error", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             }
         //Inflate ViewStub before get view
 
@@ -83,24 +88,24 @@ public class Index extends AppCompatActivity {
 
         switchView();
 
-        //  mDBHelper.openDatabase();
-//        ArrayList<String> lis=mDBHelper.getvehiclename();
-//        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,lis);
-//        spin.setAdapter(adapter);
+          mDBHelper.openDatabase();
+        ArrayList<String> lis=mDBHelper.getvehiclename();
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,lis);
+        spin.setAdapter(adapter);
 
-//        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
-//                car_name = parent.getItemAtPosition(position).toString();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
+                car_name = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
@@ -159,11 +164,12 @@ public class Index extends AppCompatActivity {
                 i.putExtra("name", value);
                 startActivityForResult(i, 123);
             }
-//             else if (value.equals("Fill-Up Rec.")) {
-//                Intent i = new Intent(MainActivity.this, FillupRecord.class);
-//                i.putExtra("name", value);
-//                startActivityForResult(i, 123);
-//            } else if (value.equals("Service Rec.")) {
+             else if (value.equals("Fill-Up Rec.")) {
+                Intent i = new Intent(Index.this, FillUpRecord.class);
+                i.putExtra("name", value);
+                startActivityForResult(i, 123);
+            }
+//            else if (value.equals("Service Rec.")) {
 //                Intent i = new Intent(MainActivity.this, servicerecord.class);
 //                i.putExtra("name", value);
 //                startActivityForResult(i, 123);

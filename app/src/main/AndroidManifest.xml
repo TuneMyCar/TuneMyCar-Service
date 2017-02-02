@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addVehicle"></activity>
+        <activity android:name=".addVehicle" />
+        <activity android:name=".FillUpRecord"></activity>
     </application>
 
 </manifest>

@@ -9,7 +9,27 @@
     tools:context="com.hsylabs.tunemycar_carservice.Index">
 
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_marginBottom="45dp"
+        android:layout_below="@+id/stub_list"
+        android:id="@+id/toolbar2" >
 
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:id="@+id/spinner"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="11dp"
+            android:layout_below="@+id/stub_list" />
+
+    </android.support.v7.widget.Toolbar>
     <ViewStub
         android:id="@+id/stub_list"
         android:layout_width="wrap_content"

@@ -2,6 +2,7 @@ package com.hsylabs.tunemycar;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 /**
  * Created by Omer Bashir Jamal on 2/1/2017.
@@ -48,7 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             }
         }
     }
-    private boolean checkDatabase()
+    public boolean checkDatabase()
     {
         SQLiteDatabase checkDB=null;
         try{
@@ -81,6 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             while ((length = myInput.read(buffer))>0){
                 myOutput.write(buffer, 0, length);
             }
+            Log.d("Omer", "IN DB");
 
             //Closing the streams
             myOutput.flush();
@@ -130,12 +133,60 @@ public class DatabaseHelper extends SQLiteOpenHelper
         contentValues.put("Ins_Policy",ins);
         contentValues.put("Tank_Capacity", tc);
         contentValues.put("Purchase_Price",pp);
-        contentValues.put("Purchase_POdometer",po);
+        contentValues.put("Purchase_Odometer",po);
         contentValues.put("Purchase_Date",pd);
         contentValues.put("Selling_Price",sp);
         contentValues.put("Selling_Odometer",so);
         contentValues.put("Selling_Date",sd);
         contentValues.put("Notes", n);
-        this.getWritableDatabase().insertOrThrow("addVehicle", "", contentValues);
+        this.getWritableDatabase().insertOrThrow("add_vehicle", "", contentValues);
+    }
+
+    public ArrayList<String> getvehiclename()
+    {
+        openDatabase();
+        ArrayList<String>list=new ArrayList<String>();
+        myDataBase=this.getReadableDatabase();
+        Cursor cursor = myDataBase.rawQuery("SELECT * From add_vehicle", null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            String name=cursor.getString(cursor.getColumnIndex("Vehicle_Name"));
+            list.add(name);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        myDataBase.close();
+        return list;
+
+    }
+    public String getPlate(String a)
+    {
+        String place=null;
+        openDatabase();
+        Cursor cursor = myDataBase.rawQuery("SELECT * From add_vehicle where Vehicle_Name ='"+a+"'", null);
+        cursor.moveToFirst();
+
+        if (cursor.moveToFirst()){
+            place = cursor.getString( cursor.getColumnIndex("License_Plate"));
+        }
+        myDataBase.close();
+        return place;
+    }
+    public void fill_up_record(String aa,String lp, String make, String vname, String model, String year, String tank, String notes,String odometer,String a)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Odometer",aa);
+        contentValues.put("Price",lp);
+        contentValues.put("Volume",make);
+        contentValues.put("Total_Cost",vname);
+        contentValues.put("Vehicle_Name",model);
+        contentValues.put("Date_Time",year);
+        contentValues.put("Payment_Type",tank);
+        contentValues.put("Filling_Center_Name",notes);
+        contentValues.put("Notes",odometer);
+        contentValues.put("License_Plate",a);
+        this.getWritableDatabase().insertOrThrow("fillup_record", "", contentValues);
     }
 }

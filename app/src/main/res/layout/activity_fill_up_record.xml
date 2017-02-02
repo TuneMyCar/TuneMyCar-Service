@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_fill_up_record"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hsylabs.tunemycar.FillUpRecord">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cancel"
+            android:layout_gravity="left"
+            android:layout_alignParentStart="true"
+            android:id="@+id/cancel" />
+
+        <TextView
+            android:text="Fill-Up Record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView10"
+            android:textSize="28sp"
+            android:textColor="?android:attr/detailsElementBackground"
+            android:layout_alignBottom="@+id/toolbar3"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/save"
+            android:layout_gravity="right"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/save"
+            android:onClick="addd" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Odometer(mi)"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/odometer"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="5dp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fill_up_odometer"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price(Rs)/gal"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="5dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/fill_up_price"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volume(gal)"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="8dp"/>
+
+                <EditText
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/fill_up_volume"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Cost(Rs)"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="12dp"/>
+                <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fill_up_total_cost"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="50dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:text="Vehicle"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="20dp"/>
+                <Spinner
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fill_up_vehicle"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1.77">
+
+                </Spinner>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date/Time"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fill_up_date_time"
+                    android:inputType="datetime"
+                    android:layout_marginLeft="50dp"
+                    android:layout_weight="1.78" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Type"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fill_up_payment_type"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fuel..."
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"/>
+                <Spinner
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fill_up_category"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="5dp"></Spinner>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Filling Station Address"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fill_up_station_address"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Notes"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="225dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/fill_up_notes"
+                    android:layout_marginLeft="50dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,14 +18,15 @@ public class addVehicle extends AppCompatActivity {
     ImageButton save, cancel;
     EditText vname, vmodel, vlicenseplate, vvin, vinspolicy, vpprice, vpodometer, vsodometer, vnotes, vtankcapacity,vpdate,vsdate,vsprice;
     String make, years;
+    Spinner make1,year;
     private DatabaseHelper addDatabaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vehicle);
         //connecting widgets
-        Spinner make1 = (Spinner) findViewById(R.id.vehicle_make);
-        Spinner year = (Spinner) findViewById(R.id.vehicle_year);
+        make1 = (Spinner) findViewById(R.id.vehicle_make);
+        year = (Spinner) findViewById(R.id.vehicle_year);
         save = (ImageButton) findViewById(R.id.save);
         cancel = (ImageButton) findViewById(R.id.cancel);
         vlicenseplate = (EditText) findViewById(R.id.vehicle_license_plate);
@@ -51,11 +53,29 @@ public class addVehicle extends AppCompatActivity {
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, dates);
         year.setAdapter(adapter1);
 
+        make1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                make = make1.getSelectedItem().toString();
+            }
 
-        make = make1.getSelectedItem().toString();
-        years = year.getSelectedItem().toString();
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+            }
+        });
+        year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                years = year.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(addVehicle.this, Index.class);

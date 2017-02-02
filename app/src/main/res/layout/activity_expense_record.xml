@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_fill_up_record"
+    android:id="@+id/activity_expense_record"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.hsylabs.tunemycar.FillUpRecord">
+    tools:context="com.hsylabs.tunemycar.ExpenseRecord">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -13,10 +13,7 @@
         android:background="?attr/colorPrimary"
         android:theme="?attr/actionBarTheme"
         android:minHeight="?attr/actionBarSize"
-        android:id="@+id/toolbar3"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-
+        android:id="@+id/expense_toolbar" >
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -26,7 +23,7 @@
             android:id="@+id/cancel" />
 
         <TextView
-            android:text="Fill-Up Record"
+            android:text="New Expense Record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView10"
@@ -45,10 +42,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:id="@+id/save"
-            android:onClick="addd" />
+            android:onClick="addddd" />
 
     </android.support.v7.widget.Toolbar>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -60,67 +56,41 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Odometer(mi)"
                     android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/odometer"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="5dp"/>
-
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"/>
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fill_up_odometer"/>
+                    android:id="@+id/expense_odometer"
+                    android:inputType="numberDecimal"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Price(Rs)/gal"
+                    android:text="Expenses"
                     android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="5dp"/>
-                <EditText
-                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"/>
+                <Spinner
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:id="@+id/fill_up_price"/>
+                    android:id="@+id/expense_expenses"></Spinner>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Volume(gal)"
-                    android:textSize="18dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="8dp"/>
-
-                <EditText
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:id="@+id/fill_up_volume"/>
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,44 +101,35 @@
                     android:text="Total Cost(Rs)"
                     android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"/>
                 <EditText
-                    android:layout_width="150dp"
+                    android:layout_width="222dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fill_up_total_cost"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="50dp"/>
+                    android:id="@+id/expense_total_cost"
+                    android:inputType="numberDecimal"/>
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18dp"
                     android:text="Vehicle"
+                    android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginLeft="65dp"
+                    android:layout_marginTop="15dp"/>
                 <Spinner
-                    android:layout_width="210dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fill_up_vehicle"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1.77">
-
-                </Spinner>
+                    android:id="@+id/expense_vehicle_name"></Spinner>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -178,12 +139,10 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="10dp"/>
                 <EditText
-                    android:layout_width="210dp"
+                    android:layout_width="232dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fill_up_date_time"
-                    android:inputType="datetime"
-                    android:layout_marginLeft="50dp"
-                    android:layout_weight="1.78" />
+                    android:id="@+id/expense_date_time"
+                    android:inputType="datetime"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -195,12 +154,12 @@
                     android:text="Payment Type"
                     android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"/>
                 <EditText
-                    android:layout_width="210dp"
+                    android:layout_width="230dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fill_up_payment_type"/>
+                    android:id="@+id/expense_payment_time"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -209,11 +168,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fuel..."
+                    android:text="Expense Center..."
                     android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="15dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -222,37 +181,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Category"
+                    android:text="Center Name"
                     android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="10dp"/>
-                <Spinner
-                    android:layout_width="210dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fill_up_category"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="5dp"></Spinner>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Filling Station Address"
-                    android:textSize="18dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="10dp"/>
                 <EditText
-                    android:layout_width="200dp"
+                    android:layout_width="232dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fill_up_station_address"/>
+                    android:id="@+id/expense_center_name"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -260,13 +201,12 @@
                     android:text="Notes"
                     android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="80dp"
                     android:layout_marginTop="10dp"/>
                 <EditText
-                    android:layout_width="225dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/fill_up_notes"
-                    android:layout_marginLeft="50dp"/>
+                    android:layout_width="235dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/expense_notes"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

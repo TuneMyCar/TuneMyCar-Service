@@ -169,15 +169,17 @@ public class Index extends AppCompatActivity {
                 i.putExtra("name", value);
                 startActivityForResult(i, 123);
             }
-//            else if (value.equals("Service Rec.")) {
-//                Intent i = new Intent(MainActivity.this, servicerecord.class);
-//                i.putExtra("name", value);
-//                startActivityForResult(i, 123);
-//            } else if (value.equals("Expense Rec.")) {
-//                Intent i = new Intent(MainActivity.this, expenserecord.class);
-//                i.putExtra("name", value);
-//                startActivityForResult(i, 123);
-//            } else if (value.equals("Trip Rec.")) {
+            else if (value.equals("Service Rec.")) {
+                Intent i = new Intent(Index.this, ServiceRecords.class);
+                i.putExtra("name", value);
+                startActivityForResult(i, 123);
+            }
+            else if (value.equals("Expense Rec.")) {
+                Intent i = new Intent(Index.this, ExpenseRecord.class);
+                i.putExtra("name", value);
+                startActivityForResult(i, 123);
+            }
+//            else if (value.equals("Trip Rec.")) {
 //                Intent i = new Intent(MainActivity.this, triprecord.class);
 //                i.putExtra("name", value);
 //                startActivityForResult(i, 123);

@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".addVehicle" />
         <activity android:name=".FillUpRecord" />
-        <activity android:name=".ServiceRecords"></activity>
+        <activity android:name=".ServiceRecords" />
+        <activity android:name=".ExpenseRecord"></activity>
     </application>
 
 </manifest>

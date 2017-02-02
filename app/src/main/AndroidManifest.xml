@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".addVehicle" />
-        <activity android:name=".FillUpRecord"></activity>
+        <activity android:name=".FillUpRecord" />
+        <activity android:name=".ServiceRecords"></activity>
     </application>
 
 </manifest>

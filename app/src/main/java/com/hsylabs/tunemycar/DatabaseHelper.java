@@ -189,4 +189,19 @@ public class DatabaseHelper extends SQLiteOpenHelper
         contentValues.put("License_Plate",a);
         this.getWritableDatabase().insertOrThrow("fillup_record", "", contentValues);
     }
+    public void service_record(String a,String b,String c,String d,String e,String f,String g,String h,String i)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Odometer",a);
+        contentValues.put("Services",b);
+        contentValues.put("Total_Cost",c);
+        contentValues.put("Vehicle_Name",d);
+        contentValues.put("Date_Time",e);
+        contentValues.put("Payment_Type",f);
+        contentValues.put("Service_Center_Name",g);
+        contentValues.put("Notes",h);
+        contentValues.put("License_Plate",i);
+        this.getWritableDatabase().insertOrThrow("service_record", "", contentValues);
+    }
 }

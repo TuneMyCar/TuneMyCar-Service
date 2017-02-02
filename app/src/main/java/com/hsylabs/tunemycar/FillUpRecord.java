@@ -6,6 +6,9 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.style.ParagraphStyle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -24,7 +27,9 @@ public class FillUpRecord extends AppCompatActivity {
     Spinner spi;
     public static final String DBNAME = "myCarDB.sqlite";
     String license_plate,mm,y;
-    int m,k,total, sum=0;
+
+    double mul = 0;
+    double mul2 = 0;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,43 @@ public class FillUpRecord extends AppCompatActivity {
         });
 
         license_plate= nDBHelper.getPlate(mm);
+
+        // TOTAL COST FUNCTION
+
+
+        fvolume.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String inputText = fvolume.getText().toString();
+                try {
+                    mul = Double.parseDouble(inputText);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+
+                String fpp = fprice.getText().toString();
+                try {
+                    mul2 = Double.parseDouble(fpp);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+//                BigDecimal result = new BigDecimal("0.3").multiply( new BigDecimal("3.0") );
+                double res = mul * mul2;
+                ftotalcost.setText(String.format("%.2f", res));
+
+            }
+        });
+
 
     }
 

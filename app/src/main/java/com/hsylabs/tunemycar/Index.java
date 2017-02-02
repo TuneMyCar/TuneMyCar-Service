@@ -224,12 +224,14 @@ public class Index extends AppCompatActivity {
 //                i.putExtra("name", value);
 //                i.putExtra("car_name", car_name);
 //                startActivityForResult(i, 123);
-//            } else if (value.equals("About")) {
-//                Intent i = new Intent(MainActivity.this, team.class);
-//                i.putExtra("name", value);
-//                i.putExtra("car_name", car_name);
-//                startActivityForResult(i, 123);
-//            } else if (value.equals("Charts")) {
+//            }
+        else if (value.equals("About")) {
+                Intent i = new Intent(Index.this, about.class);
+                i.putExtra("name", value);
+                i.putExtra("car_name", car_name);
+                startActivityForResult(i, 123);
+            }
+            //else if (value.equals("Charts")) {
 //                Intent i = new Intent(MainActivity.this, charts.class);
 //                i.putExtra("name", value);
 //                i.putExtra("car_name", car_name);

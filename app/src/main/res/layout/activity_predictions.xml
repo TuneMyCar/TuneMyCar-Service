@@ -37,27 +37,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next FillUp Date"
-            android:layout_marginLeft="55dp"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/colorPrimaryDark"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="n/a"
-            android:layout_marginLeft="55dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/prediction_fillup_date"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Next FillUp Odometer"
             android:layout_marginLeft="55dp"
             android:layout_marginTop="15dp"

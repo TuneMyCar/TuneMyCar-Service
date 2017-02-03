@@ -41,6 +41,7 @@
             android:layout_gravity="right"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:onClick="ad"
             android:id="@+id/save" />
 
     </android.support.v7.widget.Toolbar>

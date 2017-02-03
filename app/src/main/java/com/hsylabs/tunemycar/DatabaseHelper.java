@@ -468,4 +468,30 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         return price;
     }
+    public Double gettankcapacity(String a){
+        openDatabase();
+        Log.d("kokoko",a);
+        Cursor cursor=myDataBase.rawQuery("Select Tank_Capacity FROM add_vehicle WHERE Vehicle_Name='"+a+"'",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+        Log.d("tc",price.toString());
+        return price;
+    }
+    public void vehicle_part(String a,String b,String c,String d,String e,String f)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Part_Name",a);
+        contentValues.put("Part_Number",b);
+        contentValues.put("Part_Type",c);
+        contentValues.put("Part_Brand",d);
+        contentValues.put("Part_Price",e);
+        contentValues.put("Part_Notes",f);
+        this.getWritableDatabase().insertOrThrow("Vehicle_Parts", "", contentValues);
+    }
 }

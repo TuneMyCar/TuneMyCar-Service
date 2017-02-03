@@ -43,7 +43,7 @@ public class Index extends AppCompatActivity {
     private DatabaseHelper mDBHelper;
     ImageButton team;
     Spinner spin;
-    String car_name;
+    String car_name = null;
 
     static final int VIEW_MODE_LISTVIEW = 0;
     static final int VIEW_MODE_GRIDVIEW = 1;
@@ -169,60 +169,69 @@ public class Index extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String value = productList.get(position).getTitle();
             //    Do any thing when user click to item
-            if (value.equals("Vehicle")) {
-                Intent i = new Intent(Index.this, addVehicle.class);
-                i.putExtra("name", value);
-                startActivityForResult(i, 123);
-            } else if (value.equals("Fill-Up Rec.")) {
-                Intent i = new Intent(Index.this, FillUpRecord.class);
-                i.putExtra("name", value);
-                startActivityForResult(i, 123);
-            } else if (value.equals("Service Rec.")) {
-                Intent i = new Intent(Index.this, ServiceRecords.class);
-                i.putExtra("name", value);
-                startActivityForResult(i, 123);
-            } else if (value.equals("Expense Rec.")) {
-                Intent i = new Intent(Index.this, ExpenseRecord.class);
-                i.putExtra("name", value);
-                startActivityForResult(i, 123);
-            } else if (value.equals("FAQ")) {
-                Intent i = new Intent(Index.this, FAQ.class);
-                startActivity(i);
-            } else if (value.equals("Trip Rec.")) {
-                Intent i = new Intent(Index.this, TripRecord.class);
-                i.putExtra("name", value);
-                startActivityForResult(i, 123);
-            } else if (value.equals("Vehicle Parts")) {
-                Intent i = new Intent(Index.this, VehicleParts.class);
-                i.putExtra("name", value);
-                startActivityForResult(i, 123);
-            } else if (value.equals("Vehicle Info.")) {
-                Intent i = new Intent(Index.this, VehicleDetails.class);
-                i.putExtra("name", value);
-                i.putExtra("car_name", car_name);
-                startActivityForResult(i, 123);
-            } else if (value.equals("Browse Rec.")) {
-                Intent i = new Intent(Index.this, BrowseRecords.class);
-                i.putExtra("name", value);
-                i.putExtra("car_name", car_name);
-                startActivityForResult(i, 123);
-            } else if (value.equals("Statistics")) {
-                Intent i = new Intent(Index.this, statictics.class);
-                i.putExtra("name", value);
-                i.putExtra("car_name", car_name);
-                startActivityForResult(i, 123);
-            } else if (value.equals("Predictions")) {
-                Intent i = new Intent(Index.this, Predictions.class);
-                i.putExtra("name", value);
-                i.putExtra("car_name", car_name);
-                startActivityForResult(i, 123);
-            }
-            //else if (value.equals("Charts")) {
+            if(car_name == null) {
+                Toast.makeText(Index.this, "Please add a vehicle first", Toast.LENGTH_SHORT).show();
+                if (value.equals("Vehicle")) {
+                    Intent i = new Intent(Index.this, addVehicle.class);
+                    i.putExtra("name", value);
+                    startActivityForResult(i, 123);
+                }
+            } else {
+                if (value.equals("Vehicle")) {
+                    Intent i = new Intent(Index.this, addVehicle.class);
+                    i.putExtra("name", value);
+                    startActivityForResult(i, 123);
+                } else if (value.equals("Fill-Up Rec.")) {
+                    Intent i = new Intent(Index.this, FillUpRecord.class);
+                    i.putExtra("name", value);
+                    startActivityForResult(i, 123);
+                } else if (value.equals("Service Rec.")) {
+                    Intent i = new Intent(Index.this, ServiceRecords.class);
+                    i.putExtra("name", value);
+                    startActivityForResult(i, 123);
+                } else if (value.equals("Expense Rec.")) {
+                    Intent i = new Intent(Index.this, ExpenseRecord.class);
+                    i.putExtra("name", value);
+                    startActivityForResult(i, 123);
+                } else if (value.equals("FAQ")) {
+                    Intent i = new Intent(Index.this, FAQ.class);
+                    startActivity(i);
+                } else if (value.equals("Trip Rec.")) {
+                    Intent i = new Intent(Index.this, TripRecord.class);
+                    i.putExtra("name", value);
+                    startActivityForResult(i, 123);
+                } else if (value.equals("Vehicle Parts")) {
+                    Intent i = new Intent(Index.this, VehicleParts.class);
+                    i.putExtra("name", value);
+                    startActivityForResult(i, 123);
+                } else if (value.equals("Vehicle Info.")) {
+                    Intent i = new Intent(Index.this, VehicleDetails.class);
+                    i.putExtra("name", value);
+                    i.putExtra("car_name", car_name);
+                    startActivityForResult(i, 123);
+                } else if (value.equals("Browse Rec.")) {
+                    Intent i = new Intent(Index.this, BrowseRecords.class);
+                    i.putExtra("name", value);
+                    i.putExtra("car_name", car_name);
+                    startActivityForResult(i, 123);
+                } else if (value.equals("Statistics")) {
+                    Intent i = new Intent(Index.this, statictics.class);
+                    i.putExtra("name", value);
+                    i.putExtra("car_name", car_name);
+                    startActivityForResult(i, 123);
+                } else if (value.equals("Predictions")) {
+                    Intent i = new Intent(Index.this, Predictions.class);
+                    i.putExtra("name", value);
+                    i.putExtra("car_name", car_name);
+                    startActivityForResult(i, 123);
+                }
+                //else if (value.equals("Charts")) {
 //                Intent i = new Intent(MainActivity.this, charts.class);
 //                i.putExtra("name", value);
 //                i.putExtra("car_name", car_name);
 //                startActivityForResult(i, 123);
 //            }
+            }
 
         }
     };

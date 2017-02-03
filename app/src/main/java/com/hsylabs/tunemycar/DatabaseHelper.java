@@ -300,11 +300,173 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         Log.d("DSADSA", a);
         while (!cursor.isAfterLast()) {
-            price = Double.parseDouble(cursor.getString(0));
+            try {
+                price = Double.parseDouble(cursor.getString(0));
+            }catch (NumberFormatException ex)
+            {ex.printStackTrace();}
             cursor.moveToNext();
         }
         cursor.close();
+        Log.d("omerprice",price.toString());
         myDataBase.close();
+
+        return price;
+    }
+    public Double getCostt(String a) {
+        openDatabase();
+        Double price = null;
+        Cursor cursor0=myDataBase.rawQuery("Select*FROM fillup_record WHERE Vehicle_Name='"+a+"'", null);
+        cursor0.moveToFirst();
+        while (!cursor0.isAfterLast())
+        {Cursor cursor = myDataBase.rawQuery("SELECT sum(Total_Cost) FROM fillup_record GROUP BY Vehicle_Name", null);
+            price = Double.parseDouble(cursor.getString(3));
+            cursor0.moveToNext();
+        }
+        cursor0.close();
+        myDataBase.close();
+        return price;
+    }
+   public  Double gettotalownership(String a) {
+    openDatabase();
+    Cursor cursor = myDataBase.rawQuery("SELECT Purchase_Price FROM add_vehicle WHERE Vehicle_Name='"+a+"'", null);
+    cursor.moveToFirst();
+    Double price = null;
+    if (cursor.moveToFirst()){
+        price = cursor.getDouble(0);
+    }
+    cursor.close();
+    myDataBase.close();
+
+    return price;
+}
+    public  Double getsellingprice(String a) {
+        openDatabase();
+        Cursor cursor = myDataBase.rawQuery("SELECT Selling_Price FROM add_vehicle WHERE Vehicle_Name='"+a+"'", null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
+        return price;
+    }
+    public Double getcurrentodometer(String a){
+        openDatabase();
+        Cursor cursor=myDataBase.rawQuery("Select MAX(Odometer) FROM fillup_record WHERE Vehicle_Name='"+a+"'",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
+        return price;
+    }
+    public  Double getPurchaseOdometer(String a) {
+        openDatabase();
+        Cursor cursor=myDataBase.rawQuery("Select Purchase_Odometer FROM add_vehicle WHERE Vehicle_Name='"+a+"'",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
+        return price;
+    }
+    public Double getmaxgallon(String a){
+        openDatabase();
+        Cursor cursor=myDataBase.rawQuery("Select MAX(Price) FROM fillup_record WHERE Vehicle_Name='"+a+"'",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
+        return price;
+    }
+    public Double getmingallon(String a){
+        openDatabase();
+        Cursor cursor=myDataBase.rawQuery("Select MIN(Price) FROM fillup_record WHERE Vehicle_Name='"+a+"'",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
+        return price;
+    }
+    public Double getlastgallon(String a){
+        openDatabase();
+        Cursor cursor=myDataBase.rawQuery("Select MAX(Price) FROM fillup_record WHERE Price<(Select MAX(Price) FROM fillup_record  WHERE Vehicle_Name='"+a+"')",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
+        return price;
+    }
+    public Double gettotalgalon(String a){
+        openDatabase();
+        Cursor cursor=myDataBase.rawQuery("Select sum(Volume) FROM fillup_record WHERE Vehicle_Name='"+a+"'",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
+        return price;
+    }
+    public Double getlastodometer(String a){
+        openDatabase();
+        Cursor cursor=myDataBase.rawQuery("Select MAX(Odometer) FROM fillup_record WHERE Odometer<(Select MAX(Odometer) FROM fillup_record  WHERE Vehicle_Name='"+a+"')",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
+        return price;
+    }
+    public Double getcurrentgalon(String a){
+        openDatabase();
+        Cursor cursor=myDataBase.rawQuery("Select Volume FROM fillup_record WHERE Vehicle_Name='"+a+"' AND Odometer=(Select MAX(Odometer) FROM fillup_record)",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
+        return price;
+    }
+    public Double getcountoffillups(String a){
+        openDatabase();
+        Cursor cursor=myDataBase.rawQuery("Select count(Volume) FROM fillup_record WHERE Vehicle_Name='"+a+"'",null);
+        cursor.moveToFirst();
+        Double price = null;
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
+        }
+        cursor.close();
+        myDataBase.close();
+
         return price;
     }
 }

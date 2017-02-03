@@ -36,7 +36,8 @@
         <activity android:name=".Predictions" />
         <activity android:name=".VehicleDetails" />
         <activity android:name=".BrowseRecords" />
-        <activity android:name=".about"></activity>
+        <activity android:name=".about" />
+        <activity android:name=".statictics" />
     </application>
 
 </manifest>

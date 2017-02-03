@@ -219,12 +219,12 @@ public class Index extends AppCompatActivity {
                 startActivityForResult(i, 123);
             }
 
-//            else if (value.equals("Statistics")) {
-//                Intent i = new Intent(MainActivity.this, statistics.class);
-//                i.putExtra("name", value);
-//                i.putExtra("car_name", car_name);
-//                startActivityForResult(i, 123);
-//            }
+            else if (value.equals("Statistics")) {
+                Intent i = new Intent(Index.this, statictics.class);
+                i.putExtra("name", value);
+                i.putExtra("car_name", car_name);
+                startActivityForResult(i, 123);
+            }
         else if (value.equals("About")) {
                 Intent i = new Intent(Index.this, about.class);
                 i.putExtra("name", value);

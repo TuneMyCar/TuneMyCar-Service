@@ -45,6 +45,7 @@ public class ListBrowseAdapter extends BaseAdapter {
 
         View v = View.inflate(nContext, R.layout.item_listview, null);
 
+
         TextView s1 = (TextView)v.findViewById(R.id.s1);
         TextView s2 = (TextView)v.findViewById(R.id.s2);
         TextView s3 = (TextView)v.findViewById(R.id.s3);

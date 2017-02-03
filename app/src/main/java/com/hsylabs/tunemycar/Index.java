@@ -158,11 +158,8 @@ public class Index extends AppCompatActivity {
         productList.add(new Product(R.drawable.statistics, "Statistics", "This is description 8"));
         productList.add(new Product(R.drawable.chart, "Charts", "This is description 9"));
         productList.add(new Product(R.drawable.details, "Vehicle Info.", "This is description 10"));
-        productList.add(new Product(R.drawable.about, "About", "This is description 10"));
+        productList.add(new Product(R.drawable.about, "Predictions", "This is description 10"));
         productList.add(new Product(R.drawable.parts, "Vehicle Parts", "This is description 10"));
-        productList.add(new Product(R.drawable.parts, "Predictions", "This is description 10"));
-        productList.add(new Product(R.drawable.details, "Browse  Cars", "This is description 10"));
-        productList.add(new Product(R.drawable.about, "What's New?", "This is description 10"));
 
         return productList;
     }
@@ -191,8 +188,7 @@ public class Index extends AppCompatActivity {
             } else if (value.equals("FAQ")) {
                 Intent i = new Intent(Index.this, FAQ.class);
                 startActivity(i);
-            }
-            else if (value.equals("Trip Rec.")) {
+            } else if (value.equals("Trip Rec.")) {
                 Intent i = new Intent(Index.this, TripRecord.class);
                 i.putExtra("name", value);
                 startActivityForResult(i, 123);
@@ -200,33 +196,23 @@ public class Index extends AppCompatActivity {
                 Intent i = new Intent(Index.this, VehicleParts.class);
                 i.putExtra("name", value);
                 startActivityForResult(i, 123);
-            } else if (value.equals("Predictions")) {
-                Intent i = new Intent(Index.this, Predictions.class);
-                i.putExtra("name", value);
-                startActivityForResult(i, 123);
-            }
-
-            else if (value.equals("Vehicle Info.")) {
+            } else if (value.equals("Vehicle Info.")) {
                 Intent i = new Intent(Index.this, VehicleDetails.class);
                 i.putExtra("name", value);
                 i.putExtra("car_name", car_name);
                 startActivityForResult(i, 123);
-            }
-            else if (value.equals("Browse Rec.")) {
+            } else if (value.equals("Browse Rec.")) {
                 Intent i = new Intent(Index.this, BrowseRecords.class);
                 i.putExtra("name", value);
                 i.putExtra("car_name", car_name);
                 startActivityForResult(i, 123);
-            }
-
-            else if (value.equals("Statistics")) {
+            } else if (value.equals("Statistics")) {
                 Intent i = new Intent(Index.this, statictics.class);
                 i.putExtra("name", value);
                 i.putExtra("car_name", car_name);
                 startActivityForResult(i, 123);
-            }
-        else if (value.equals("About")) {
-                Intent i = new Intent(Index.this, about.class);
+            } else if (value.equals("Predictions")) {
+                Intent i = new Intent(Index.this, Predictions.class);
                 i.putExtra("name", value);
                 i.putExtra("car_name", car_name);
                 startActivityForResult(i, 123);
@@ -265,6 +251,11 @@ public class Index extends AppCompatActivity {
                 editor.commit();
 
                 break;
+            case R.id.item_menu_2:
+                Intent i = new Intent(Index.this, about.class);
+                startActivity(i);
+            case R.id.item_menu_0:
+                finish();
         }
         return true;
     }

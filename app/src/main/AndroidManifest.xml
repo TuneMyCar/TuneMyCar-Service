@@ -38,6 +38,10 @@
         <activity android:name=".BrowseRecords" />
         <activity android:name=".about" />
         <activity android:name=".statictics" />
+        <activity
+            android:name=".BrowseRecTabbed"
+            android:label="@string/title_activity_browse_rec_tabbed"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

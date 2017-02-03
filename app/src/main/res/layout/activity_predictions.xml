@@ -27,7 +27,7 @@
             android:text="Predictions"
             android:textSize="18dp"
             android:gravity="center"
-            android:textColor="@color/common_action_bar_splitter"/>
+            android:textColor="@color/colorPrimary"/>
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout

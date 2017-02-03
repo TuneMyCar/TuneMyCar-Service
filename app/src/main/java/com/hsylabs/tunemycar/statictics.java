@@ -13,7 +13,8 @@ public class statictics extends AppCompatActivity {
     ImageButton can;
     TextView totalrunningcost,runningcostperday,runningcostpermile,distanperday,purchasecost,sellingprice,totalcostofownership,
              costofownershipperday,costofownershippermile,totaldistance,totaltime,head,maxgalon,mingalon,avggalon,lastgalon,
-            totalgalon,avgmpg,maxmpg,minmpg,lastmpg,galnpf,dayspfil,totalrupe,stasperday,statspermile;
+            totalgalon,avgmpg,maxmpg,minmpg,lastmpg,galnpf,dayspfil,totalrupe,stasperday,statspermile,avgrupeepergallon,lastrupeepergalon,
+            minrupeepergalon,maxrupeepergalon;
     String newString;
     Double total_cost;
     private DatabaseHelper kDBHelper;
@@ -48,6 +49,10 @@ public class statictics extends AppCompatActivity {
         head=(TextView)findViewById(R.id.header);
         stasperday=(TextView)findViewById(R.id.stats_total_running_cost_per_day);
         statspermile=(TextView)findViewById(R.id.stats_running_cost_per_mile);
+        avgrupeepergallon=(TextView)findViewById(R.id.stats_rupee_per_mile);
+        lastrupeepergalon=(TextView)findViewById(R.id.stats_rs_fillup);
+        minrupeepergalon=(TextView)findViewById(R.id.stats_rupee_per_day);
+        maxrupeepergalon=(TextView)findViewById(R.id.stats_mile_per_rupee);
         kDBHelper = new DatabaseHelper(this);
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -138,5 +143,19 @@ public class statictics extends AppCompatActivity {
 
         Double runpermile=total/MPG;
         statspermile.setText(String.format("%.2f",runpermile));
+
+
+        Double nfill=current_odometer+MPG;
+        Double res=nfill/total;
+        avgrupeepergallon.setText(String.format("%.2f",res));
+
+        Double res1=nfill/countfill;
+        lastrupeepergalon.setText(String.format("%.2f",res1));
+
+        Double res2=MPG/total;
+        maxrupeepergalon.setText(String.format("%.2f",res2));
+
+        Double re4=total/30;
+        minrupeepergalon.setText(String.format("%.2f",re4));
     }
 }

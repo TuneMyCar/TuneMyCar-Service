@@ -12,7 +12,7 @@ public class Predictions extends AppCompatActivity {
 
     ImageButton cancel;
     TextView pnfo,pcarrange,ptripcost,ptripmile,ptripcost100;
-    private DatabaseHelper kkDBHelper;
+    private DatabaseHelper kDBHelper;
     String newString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class Predictions extends AppCompatActivity {
         ptripcost=(TextView)findViewById(R.id.detail_cost_per_day);
         ptripmile=(TextView)findViewById(R.id.trip_cost_per_mile);
         ptripcost100=(TextView)findViewById(R.id.rip_cost_per_100mile);
-        kkDBHelper = new DatabaseHelper(this);
+        kDBHelper = new DatabaseHelper(this);
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -35,22 +35,37 @@ public class Predictions extends AppCompatActivity {
         } else {
             newString= (String) savedInstanceState.getSerializable("car_name");
         }
-      //  Log.d("new String",newString);
-//        Double tc=kkDBHelper.gettankcapacity(newString);
-//        pcarrange.setText(tc.toString());
-//        Double current_odometer=kkDBHelper.getcurrentodometer(newString);
-//        Double lastodo=kkDBHelper.getlastodometer(newString);
-//        Double currentgal=kkDBHelper.getcurrentgalon(newString);
-//
-//        Double lastgalonn=kkDBHelper.getlastgallon(newString);
-//
-//        Double MPG=(current_odometer-lastodo)/(currentgal-lastgalonn);
- //       Double range=(tc/MPG)*100;
-  //      pcarrange.setText(range.toString());
+        Double lastgalonn=kDBHelper.getlastgallon(newString);
+        Double currentgal=kDBHelper.getcurrentgalon(newString);
+        Double lastodo=kDBHelper.getlastodometer(newString);
+        Double current_odometer=kDBHelper.getcurrentodometer(newString);
+        Double chotaMPG=currentgal-lastgalonn;
+        if(chotaMPG<=0)
+        {
+            Log.d("Omer", "ypp");
+        }
+        Double MPG=(current_odometer-lastodo)/chotaMPG;
+        if(MPG<0)
+        {
+            MPG=MPG*(-1);
+        }
+        Double nfill=current_odometer+MPG;
+        pnfo.setText(String.format("%.2f",nfill));
 
-   //     Double nextfillup=current_odometer+range;
- //       pnfo.setText(nextfillup.toString());
+        Double tc=kDBHelper.gettankcapacity(newString);
+        Double car_range=(tc/MPG)*100;
+        pcarrange.setText(String.format("%.2f",car_range));
 
+
+        Double tripcostperday=car_range/30;
+        ptripcost.setText(String.format("%.2f",tripcostperday));
+
+        Double tdistance=kDBHelper.getlastodometer(newString);
+        Double permile=car_range/tdistance;
+        ptripmile.setText(String.format("%.2f",permile));
+
+        Double per100=car_range/(tdistance*100);
+        ptripcost100.setText(String.format("%.2f",per100));
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

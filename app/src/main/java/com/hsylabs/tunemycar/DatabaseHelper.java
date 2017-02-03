@@ -494,4 +494,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
         contentValues.put("Part_Notes",f);
         this.getWritableDatabase().insertOrThrow("Vehicle_Parts", "", contentValues);
     }
+
+    public boolean deleteRecord(String a) {
+        openDatabase();
+        myDataBase.delete("fillup_record", "Vehicle_Name='"+a+"'", null);
+        return myDataBase.delete("add_vehicle", "Vehicle_Name='"+a+"'", null) > 0;
+    }
 }

@@ -1,6 +1,9 @@
 package com.hsylabs.tunemycar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +20,7 @@ import java.util.ArrayList;
 public class VehicleDetails extends AppCompatActivity {
     TextView lp,vin,ins,tc,pp,po,pd,sp,so,sd,n,m,model,year,header;
     private DatabaseHelper kDBHelper;
-
+    ImageButton del;
     String newString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,9 @@ public class VehicleDetails extends AppCompatActivity {
         sd=(TextView)findViewById(R.id.detail_sell_date);
         n=(TextView)findViewById(R.id.detail_notes);
         header = (TextView)findViewById(R.id.header);
-
+        del = (ImageButton) findViewById(R.id.del);
         kDBHelper = new DatabaseHelper(this);
+
 
 
         if (savedInstanceState == null) {
@@ -52,6 +56,27 @@ public class VehicleDetails extends AppCompatActivity {
         } else {
             newString= (String) savedInstanceState.getSerializable("car_name");
         }
+
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(VehicleDetails.this)
+                        .setMessage("Are you sure you want to delete?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                VehicleDetails.this.finish();
+                                if(kDBHelper.deleteRecord(newString)) {
+                                    Toast.makeText(VehicleDetails.this, "Deleted", Toast.LENGTH_LONG).show();
+                                    Intent i = new Intent(VehicleDetails.this, Index.class);
+                                    startActivity(i);
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
         header.setText(newString);
 
         String[] data = {""};
@@ -74,4 +99,5 @@ public class VehicleDetails extends AppCompatActivity {
         n.setText(data[14]);
 
     }
+
 }

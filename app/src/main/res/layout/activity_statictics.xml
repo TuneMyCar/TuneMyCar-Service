@@ -62,6 +62,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="80dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:id="@+id/stats_total_running_cost"/>
             </LinearLayout>
@@ -202,7 +204,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:layout_marginTop="4dp"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="40dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:id="@+id/stats_total_cost_ownership"/>
             </LinearLayout>
@@ -225,6 +227,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:layout_marginLeft="60dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:id="@+id/stats_tcost_ownership_per_day"/>
             </LinearLayout>
@@ -247,6 +250,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:layout_marginLeft="60dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:id="@+id/stats_cost_ownership_per_mile"/>
             </LinearLayout>

@@ -1,14 +1,19 @@
 package com.hsylabs.tunemycar;
 
+import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class statictics extends AppCompatActivity {
+    ImageButton can;
     TextView totalrunningcost,runningcostperday,runningcostpermile,distanperday,purchasecost,sellingprice,totalcostofownership,
              costofownershipperday,costofownershippermile,totaldistance,totaltime,head,maxgalon,mingalon,avggalon,lastgalon,
-            totalgalon,avgmpg,maxmpg,minmpg,lastmpg,galnpf,dayspfil;
+            totalgalon,avgmpg,maxmpg,minmpg,lastmpg,galnpf,dayspfil,totalrupe;
     String newString;
     Double total_cost;
     private DatabaseHelper kDBHelper;
@@ -16,6 +21,7 @@ public class statictics extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statictics);
+        can=(ImageButton)findViewById(R.id.cancel);
         totalrunningcost=(TextView)findViewById(R.id.stats_total_running_cost);
         runningcostperday=(TextView)findViewById(R.id.stats_total_running_cost_per_day);
         runningcostpermile=(TextView)findViewById(R.id.stats_running_cost_per_mile);
@@ -38,6 +44,7 @@ public class statictics extends AppCompatActivity {
         avggalon=(TextView)findViewById(R.id.stats_avg_rupe_per_galon);
         lastgalon=(TextView)findViewById(R.id.stats_last_rupe_gal);
         totaltime=(TextView)findViewById(R.id.stats_total_time);
+        totalrupe=(TextView)findViewById(R.id.stats_total_rupee);
         head=(TextView)findViewById(R.id.header);
         kDBHelper = new DatabaseHelper(this);
         if (savedInstanceState == null) {
@@ -52,10 +59,15 @@ public class statictics extends AppCompatActivity {
         }
         head.setText(newString);
         Log.d("omer",newString);
-       // Double total=kDBHelper.getCostt(newString);
+        Double total=kDBHelper.getCostt(newString);
+        totalrunningcost.setText(total.toString());
         //totalcost of ownership
         Double total_ownership=kDBHelper.gettotalownership(newString);
-        totalcostofownership.setText(total_ownership.toString()+ " PKR");
+        Double restotl=total_ownership+total;
+        totalcostofownership.setText(restotl.toString()+ " PKR");
+
+        Double ownershipperday=restotl/365;
+        costofownershipperday.setText(String.format("%.2f",ownershipperday)+" PKR");
 
         Double sell=kDBHelper.getsellingprice(newString);
         sellingprice.setText(sell.toString()+ " PKR");
@@ -64,6 +76,9 @@ public class statictics extends AppCompatActivity {
         Double purchase_odometer=kDBHelper.getPurchaseOdometer(newString);
         Double result=current_odometer-purchase_odometer;
         totaldistance.setText(result.toString()+ " mi");
+
+        Double ownershippermile=restotl/result;
+        costofownershippermile.setText(String.format("%.2f",ownershippermile)+" PKR");
 
         purchasecost.setText(total_ownership.toString()+ " PKR");
 
@@ -107,6 +122,13 @@ public class statictics extends AppCompatActivity {
         Double daypfill=30/countfill;
         dayspfil.setText(daypfill.toString());
 
-
+        totalrupe.setText(total.toString());
+        can.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(statictics.this,Index.class);
+                startActivity(i);
+            }
+        });
     }
 }

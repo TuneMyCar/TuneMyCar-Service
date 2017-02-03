@@ -314,16 +314,15 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
     public Double getCostt(String a) {
         openDatabase();
+        Cursor cursor = myDataBase.rawQuery("SELECT sum(Total_Cost) FROM fillup_record WHERE Vehicle_Name='"+a+"'", null);
+        cursor.moveToFirst();
         Double price = null;
-        Cursor cursor0=myDataBase.rawQuery("Select*FROM fillup_record WHERE Vehicle_Name='"+a+"'", null);
-        cursor0.moveToFirst();
-        while (!cursor0.isAfterLast())
-        {Cursor cursor = myDataBase.rawQuery("SELECT sum(Total_Cost) FROM fillup_record GROUP BY Vehicle_Name", null);
-            price = Double.parseDouble(cursor.getString(3));
-            cursor0.moveToNext();
+        if (cursor.moveToFirst()){
+            price = cursor.getDouble(0);
         }
-        cursor0.close();
+        cursor.close();
         myDataBase.close();
+
         return price;
     }
    public  Double gettotalownership(String a) {

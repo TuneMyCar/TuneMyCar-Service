@@ -105,9 +105,9 @@ public class statictics extends AppCompatActivity {
         Double currentgal=kDBHelper.getcurrentgalon(newString);
         Double lastodo=kDBHelper.getlastodometer(newString);
         Double MPG=(current_odometer-lastodo)/(currentgal-lastgalonn);
-        maxmpg.setText(MPG.toString());
+        maxmpg.setText(String.format("%.2f",MPG));
 
-        lastmpg.setText(MPG.toString());
+        lastmpg.setText(String.format("%.2f",MPG));
 
         Double minmpgg=MPG/2;
         minmpg.setText(String.format("%.2f",minmpgg));
@@ -123,12 +123,6 @@ public class statictics extends AppCompatActivity {
         dayspfil.setText(daypfill.toString());
 
         totalrupe.setText(total.toString());
-        can.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(statictics.this,Index.class);
-                startActivity(i);
-            }
-        });
+
     }
 }

@@ -65,10 +65,10 @@ public class VehicleDetails extends AppCompatActivity {
         vin.setText(data[5]);
         ins.setText(data[6]);
         tc.setText(data[7]+" gal");
-        pp.setText("RS. "+data[8]+" PKR");
+        pp.setText("RS. "+data[8]);
         po.setText(data[9]+" km");
         pd.setText(data[10]);
-        sp.setText("RS. "+data[11]+" PKR");
+        sp.setText("RS. "+data[11]);
         so.setText(data[12]+" km");
         sd.setText(data[13]);
         n.setText(data[14]);

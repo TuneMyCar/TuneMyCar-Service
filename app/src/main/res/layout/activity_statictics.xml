@@ -15,13 +15,6 @@
         android:minHeight="?attr/actionBarSize"
         android:id="@+id/toolbar6" >
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/cancel"
-            android:layout_gravity="left"
-            android:id="@+id/cancel" />
-
         <TextView
             android:text="Gujjar"
             android:layout_width="wrap_content"
@@ -64,8 +57,11 @@
                     android:text=""
                     android:layout_marginTop="2dp"
                     android:layout_marginLeft="80dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_total_running_cost"/>
+                    android:id="@+id/stats_total_running_cost"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
 
@@ -87,8 +83,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_total_running_cost_per_day"/>
+                    android:id="@+id/stats_total_running_cost_per_day"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -110,7 +109,10 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_running_cost_per_mile"/>
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:id="@+id/stats_running_cost_per_mile"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -133,8 +135,11 @@
                     android:text=""
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="115dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_distance_per_day"/>
+                    android:id="@+id/stats_distance_per_day"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -157,8 +162,11 @@
                     android:text=""
                     android:layout_marginTop="22dp"
                     android:layout_marginLeft="105dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_purchase_costs"/>
+                    android:id="@+id/stats_purchase_costs"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -181,8 +189,11 @@
                     android:text=""
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="120dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_selling_price"/>
+                    android:id="@+id/stats_selling_price"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -205,8 +216,11 @@
                     android:text=""
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_total_cost_ownership"/>
+                    android:id="@+id/stats_total_cost_ownership"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -227,9 +241,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:layout_marginLeft="60dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_tcost_ownership_per_day"/>
+                    android:id="@+id/stats_tcost_ownership_per_day"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -250,9 +267,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:layout_marginLeft="60dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_cost_ownership_per_mile"/>
+                    android:id="@+id/stats_cost_ownership_per_mile"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -274,9 +294,12 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:layout_marginLeft="110dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_total_distance"/>
+                    android:id="@+id/stats_total_distance"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -298,9 +321,12 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:layout_marginTop="4dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
                     android:layout_marginLeft="135dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/stats_total_time"/>
+                    android:id="@+id/stats_total_time"
+                    android:textStyle="normal|bold" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -311,9 +337,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Fill-Ups"
-                    android:layout_marginLeft="160dp"
-                    android:layout_marginTop="60dp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="normal|bold"
+                    android:textSize="24sp" />
 
             </LinearLayout>
             <LinearLayout
@@ -324,7 +352,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp"
-                    android:background="#FF0000FF" />
+                    android:background="@color/colorPrimary" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -388,13 +416,14 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="20dp"
                     android:id="@+id/stats_min_mpg"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Max MPG:"
                     android:textSize="14dp"
                     android:textColor="@color/colorPrimary"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="10dp"/>
 
                 <TextView

@@ -13,7 +13,7 @@ public class statictics extends AppCompatActivity {
     ImageButton can;
     TextView totalrunningcost,runningcostperday,runningcostpermile,distanperday,purchasecost,sellingprice,totalcostofownership,
              costofownershipperday,costofownershippermile,totaldistance,totaltime,head,maxgalon,mingalon,avggalon,lastgalon,
-            totalgalon,avgmpg,maxmpg,minmpg,lastmpg,galnpf,dayspfil,totalrupe;
+            totalgalon,avgmpg,maxmpg,minmpg,lastmpg,galnpf,dayspfil,totalrupe,stasperday,statspermile;
     String newString;
     Double total_cost;
     private DatabaseHelper kDBHelper;
@@ -46,6 +46,8 @@ public class statictics extends AppCompatActivity {
         totaltime=(TextView)findViewById(R.id.stats_total_time);
         totalrupe=(TextView)findViewById(R.id.stats_total_rupee);
         head=(TextView)findViewById(R.id.header);
+        stasperday=(TextView)findViewById(R.id.stats_total_running_cost_per_day);
+        statspermile=(TextView)findViewById(R.id.stats_running_cost_per_mile);
         kDBHelper = new DatabaseHelper(this);
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -58,7 +60,6 @@ public class statictics extends AppCompatActivity {
             newString= (String) savedInstanceState.getSerializable("car_name");
         }
         head.setText(newString);
-        Log.d("omer",newString);
         Double total=kDBHelper.getCostt(newString);
         totalrunningcost.setText(total.toString());
         //totalcost of ownership
@@ -104,25 +105,38 @@ public class statictics extends AppCompatActivity {
 
         Double currentgal=kDBHelper.getcurrentgalon(newString);
         Double lastodo=kDBHelper.getlastodometer(newString);
-        Double MPG=(current_odometer-lastodo)/(currentgal-lastgalonn);
-        maxmpg.setText(String.format("%.2f",MPG));
+        Double chotaMPG=currentgal-lastgalonn;
+        if(chotaMPG<=0)
+        {
+            Log.d("Omer", "ypp");
+        }
+        Double MPG=(current_odometer-lastodo)/chotaMPG;
 
-        lastmpg.setText(String.format("%.2f",MPG));
+            maxmpg.setText(String.format("%.2f",MPG));
 
-        Double minmpgg=MPG/2;
-        minmpg.setText(String.format("%.2f",minmpgg));
+            lastmpg.setText(String.format("%.2f",MPG));
 
-        Double avgmpgg=(MPG-minmpgg)/2;
-        avgmpg.setText(String.format("%.2f",avgmpgg));
+            Double minmpgg=MPG/2;
+            minmpg.setText(String.format("%.2f",minmpgg));
+
+            Double avgmpgg=(MPG-minmpgg)/2;
+            avgmpg.setText(String.format("%.2f",avgmpgg));
+
+
 
         Double countfill=kDBHelper.getcountoffillups(newString);
         Double galpfillup=totalgalonn/countfill;
-        galnpf.setText(galpfillup.toString());
+        galnpf.setText(String.format("%.2f",galpfillup));
 
         Double daypfill=30/countfill;
-        dayspfil.setText(daypfill.toString());
+        dayspfil.setText(String.format("%.2f",daypfill));
 
         totalrupe.setText(total.toString());
 
+        Double runningcostperday=total/30;
+        stasperday.setText(String.format("%.2f",runningcostperday));
+
+        Double runpermile=total/MPG;
+        statspermile.setText(String.format("%.2f",runpermile));
     }
 }

@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.text.style.ParagraphStyle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -75,7 +76,21 @@ public class FillUpRecord extends AppCompatActivity {
         ArrayList<String> lis=nDBHelper.getvehiclename();
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,lis);
         spi.setAdapter(adapter);
-        mm=spi.getSelectedItem().toString();
+
+
+        mm = spi.getSelectedItem().toString();
+        spi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mm = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

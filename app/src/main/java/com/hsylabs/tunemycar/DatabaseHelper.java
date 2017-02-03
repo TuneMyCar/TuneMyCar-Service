@@ -283,7 +283,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            browse = new Browse(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            browse = new Browse(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
             tablesList.add(browse);
             cursor.moveToNext();
         }

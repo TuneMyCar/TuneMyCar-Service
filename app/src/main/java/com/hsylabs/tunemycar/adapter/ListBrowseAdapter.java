@@ -52,7 +52,7 @@ public class ListBrowseAdapter extends BaseAdapter {
         TextView s4 = (TextView)v.findViewById(R.id.s4);
 
         s1.setText("Volume: "+nRowList.get(position).getS2()+" gal");
-        s2.setText(nRowList.get(position).getS3());
+        s2.setText(nRowList.get(position).getS6());
         s3.setText("Odometer: "+nRowList.get(position).getS1() +" mi");
         s4.setText("Price: RS. "+nRowList.get(position).getS4());
 

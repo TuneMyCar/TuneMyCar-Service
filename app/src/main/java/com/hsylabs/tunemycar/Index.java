@@ -225,12 +225,12 @@ public class Index extends AppCompatActivity {
                     i.putExtra("car_name", car_name);
                     startActivityForResult(i, 123);
                 }
-                //else if (value.equals("Charts")) {
-//                Intent i = new Intent(MainActivity.this, charts.class);
-//                i.putExtra("name", value);
-//                i.putExtra("car_name", car_name);
-//                startActivityForResult(i, 123);
-//            }
+                else if (value.equals("Charts")) {
+                Intent i = new Intent(Index.this,Charts.class);
+                i.putExtra("name", value);
+                i.putExtra("car_name", car_name);
+                startActivityForResult(i, 123);
+            }
             }
 
         }

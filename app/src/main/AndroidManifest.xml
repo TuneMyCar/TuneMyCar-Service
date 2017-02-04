@@ -38,6 +38,13 @@
         <activity android:name=".BrowseRecords" />
         <activity android:name=".about" />
         <activity android:name=".statictics" />
+        <activity android:name=".Charts">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

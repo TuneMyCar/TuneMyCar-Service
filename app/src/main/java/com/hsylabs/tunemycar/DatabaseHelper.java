@@ -500,4 +500,23 @@ public class DatabaseHelper extends SQLiteOpenHelper
         myDataBase.delete("fillup_record", "Vehicle_Name='"+a+"'", null);
         return myDataBase.delete("add_vehicle", "Vehicle_Name='"+a+"'", null) > 0;
     }
+
+    public String[] getMiles(String a) {
+        String sd;
+        openDatabase();
+        Cursor cursor = myDataBase.rawQuery("SELECT * From fillup_record WHERE Vehicle_Name='"+a+"'", null);
+        cursor.moveToFirst();
+        String[] array = new String[9];
+        cursor.moveToFirst();
+        int i = 0;
+        while (!cursor.isAfterLast()) {
+
+            sd = cursor.getString(0);
+            array[i] = sd;
+            cursor.moveToNext();
+            i++;
+        }
+        cursor.close();
+        return array;
+    }
 }
